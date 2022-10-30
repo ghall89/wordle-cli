@@ -3,9 +3,7 @@ import inquirer from 'inquirer';
 
 import words from './dictionary.js';
 
-// const word = words[Math.floor(Math.random() * words.length)];
-
-const word = 'apple';
+const word = words[Math.floor(Math.random() * words.length)];
 
 const guesses = [
 	[' ', ' ', ' ', ' ', ' '],
