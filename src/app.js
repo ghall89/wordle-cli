@@ -1,19 +1,12 @@
-import gameLoop from './src/gameLoop.js';
-
-console.clear();
-
-// console.log(`
-//
-//
 // #    #  ####  #####  #####  #      ######        ####  #      #
 // #    # #    # #    # #    # #      #            #    # #      #
 // #    # #    # #    # #    # #      #####  ##### #      #      #
 // # ## # #    # #####  #    # #      #            #      #      #
 // ##  ## #    # #   #  #    # #      #            #    # #      #
 // #    #  ####  #    # #####  ###### ######        ####  ###### #
-//
-//
-//
-// 	`);
+
+import gameLoop from './gameLoop.js';
+
+console.clear();
 
 gameLoop(0);

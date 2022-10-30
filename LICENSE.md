@@ -1,28 +1,3 @@
-# wordle-cli
-
-## About
-
-A clone of [Wordle](https://www.nytimes.com/games/wordle/index.html) for command line, written in JavaScript.
-
-![](./screenshot.png)
-
-## Installation & Usage
-
-Run `npm i -g https://github.com/ghall89/wordle-cli` to install.
-
-To play, run `wordle-cli`.
-
-## Acknowledgements
-
-Wordle originally created by [Josh Wardle](https://www.powerlanguage.co.uk)
-
-## Dependencies
-
-- [chalk](https://www.npmjs.com/package/chalk)
-- [inquirer](https://www.npmjs.com/package/inquirer)
-
-## License
-
 MIT License
 
 Copyright (c) 2022 Graham Hall

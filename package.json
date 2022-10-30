@@ -1,18 +1,24 @@
 {
-	"name": "wordle-cli",
-	"version": "0.1.1",
-	"description": "",
-	"main": "index.js",
-	"type": "module",
+	"name": "@ghalldev/wordle-cli",
+	"version": "0.2.0",
+	"description": "A CLI clone of Wordle written in JavaScript",
+	"main": "src/app.js",
+	"bin": {
+		"@ghalldev/wordle-cli": "bin/wordle-cli",
+		"wordle-cli": "bin/wordle-cli"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
-		"start": "node app.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"chalk": "^5.1.2",
-		"inquirer": "^9.1.4"
+		"chalk": "^4.1.2",
+		"esm": "^3.2.25",
+		"inquirer": "^8.2.5"
 	}
 }

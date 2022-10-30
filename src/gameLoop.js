@@ -1,10 +1,13 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
+// import dictionary
 import words from './dictionary.js';
 
+// set word from game dictionary
 const word = words[Math.floor(Math.random() * words.length)];
 
+// this defines the game grid
 const guesses = [
 	[' ', ' ', ' ', ' ', ' '],
 	[' ', ' ', ' ', ' ', ' '],
@@ -14,9 +17,12 @@ const guesses = [
 	[' ', ' ', ' ', ' ', ' '],
 ];
 
+// flag for win state
 let won = false;
 
+// primary game loop
 const gameLoop = index => {
+	// draw game grid
 	console.log(`┌───┬───┬───┬───┬───┐`);
 	console.log(
 		`│ ${guesses[0][0]} │ ${guesses[0][1]} │ ${guesses[0][2]} │ ${guesses[0][3]} │ ${guesses[0][4]} │`,
@@ -43,28 +49,32 @@ const gameLoop = index => {
 	);
 	console.log(`└───┴───┴───┴───┴───┘`);
 
+	// lose state
 	if (index === 6) {
 		console.log(`Out of guesses! The word was ${chalk.underline(word)}.`);
 		return;
 	}
 
+	// get user input
 	inquirer
 		.prompt([
 			{
 				type: 'input',
 				name: 'guess',
 				validate: input => {
+					// ensure user input is 5 characters
+					// and is a valid word in game dictionary
 					const inputLc = input.toLowerCase();
 
 					if (input.length !== 5) {
-						console.log(chalk.red('Guess must be 5 letters!'));
+						console.log(chalk.red('\nGuess must be 5 letters!'));
 						return false;
 					}
 
 					const isValid = words.includes(inputLc);
 
 					if (!isValid) {
-						console.log(chalk.red('Not a valid word!'));
+						console.log(chalk.red('\nNot a valid word!'));
 						return false;
 					}
 
@@ -73,21 +83,28 @@ const gameLoop = index => {
 			},
 		])
 		.then(({ guess }) => {
+			// convert user input to lowercase
 			const guessLc = guess.toLowerCase();
 
+			// create arrays to check user input against answer
 			const wordArr = word.split('');
 			const lettersRemaining = word.split('');
 			const guessArr = guessLc.split('');
 
+			// determine user feedback
 			for (let i = 0; i < 5; i++) {
 				if (wordArr[i] === guessArr[i]) {
+					// if character exists at same index
 					guesses[index][i] = chalk.green(guessArr[i].toUpperCase());
 				} else if (lettersRemaining.includes(guessArr[i])) {
+					// if character exists somewhere in the answer
 					guesses[index][i] = chalk.yellow(guessArr[i].toUpperCase());
 				} else {
+					// if character is not in answer
 					guesses[index][i] = chalk.blackBright(guessArr[i].toUpperCase());
 				}
 
+				// remove guessed character from lettersRemaining
 				const removeIndex = lettersRemaining.findIndex(
 					item => item === guessArr[i],
 				);
@@ -97,6 +114,7 @@ const gameLoop = index => {
 				}
 			}
 
+			// win state
 			if (guess.toLowerCase() === word) {
 				if (index === 0) {
 					console.log('Wow! You won on the first guess!');
@@ -107,6 +125,7 @@ const gameLoop = index => {
 			}
 		})
 		.finally(() => {
+			// if game is still going, run loop again
 			if (won === false) {
 				console.clear();
 				gameLoop(index + 1);
