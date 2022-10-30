@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-import words from './wordLibrary.js';
+import words from './dictionary.js';
 
 const word = words[Math.floor(Math.random() * words.length)];
 
