@@ -4,6 +4,7 @@ import inquirer from 'inquirer';
 import words from './wordLibrary.js';
 
 const word = words[Math.floor(Math.random() * words.length)];
+
 const guesses = [
 	[' ', ' ', ' ', ' ', ' '],
 	[' ', ' ', ' ', ' ', ' '],
@@ -27,12 +28,14 @@ const gameLoop = index => {
 				type: 'input',
 				name: 'guess',
 				validate: input => {
+					const inputLc = input.toLowerCase();
+
 					if (input.length !== 5) {
 						console.log(chalk.red('Guess must be 5 letters!'));
 						return false;
 					}
 
-					const isValid = words.includes(input);
+					const isValid = words.includes(inputLc);
 
 					if (!isValid) {
 						console.log(chalk.red('Not a valid word!'));
@@ -44,18 +47,18 @@ const gameLoop = index => {
 			},
 		])
 		.then(({ guess }) => {
-			// guesses[0].push(word.split(''));
+			const guessLc = guess.toLowerCase();
 
 			const wordArr = word.split('');
-			const guessArr = guess.split('');
+			const guessArr = guessLc.split('');
 
 			for (let i = 0; i < 5; i++) {
 				if (wordArr[i] === guessArr[i]) {
-					guesses[index][i] = chalk.green(guessArr[i]);
+					guesses[index][i] = chalk.green(guessArr[i].toUpperCase());
 				} else if (wordArr.includes(guessArr[i])) {
-					guesses[index][i] = chalk.yellow(guessArr[i]);
+					guesses[index][i] = chalk.yellow(guessArr[i].toUpperCase());
 				} else {
-					guesses[index][i] = chalk.blackBright(guessArr[i]);
+					guesses[index][i] = chalk.blackBright(guessArr[i].toUpperCase());
 				}
 			}
 
@@ -85,7 +88,7 @@ const gameLoop = index => {
 			);
 			console.log(`└───┴───┴───┴───┴───┘`);
 
-			if (guess === word) {
+			if (guess.toLowerCase() === word) {
 				if (index === 0) {
 					console.log('Wow! You won on the first guess!');
 				} else {
