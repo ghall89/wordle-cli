@@ -6,9 +6,7 @@ import words from './dictionary.js';
 import drawGrid from './drawGrid';
 
 // set word from game dictionary
-// const word = words[Math.floor(Math.random() * words.length)];
-
-const word = 'apple';
+const word = words[Math.floor(Math.random() * words.length)];
 
 // this defines the game grid
 const guesses = [
