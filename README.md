@@ -10,6 +10,8 @@ A clone of [Wordle](https://www.nytimes.com/games/wordle/index.html) for command
 
 Run `npm i -g https://github.com/ghall89/wordle-cli` to install.
 
+Run `npm uninstall -g @ghalldev/wordle-cli` to remove.
+
 To play, run `wordle-cli`.
 
 ## Acknowledgements
