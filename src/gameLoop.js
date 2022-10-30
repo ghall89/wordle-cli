@@ -3,7 +3,9 @@ import inquirer from 'inquirer';
 
 import words from './dictionary.js';
 
-const word = words[Math.floor(Math.random() * words.length)];
+// const word = words[Math.floor(Math.random() * words.length)];
+
+const word = 'apple';
 
 const guesses = [
 	[' ', ' ', ' ', ' ', ' '],
@@ -50,15 +52,24 @@ const gameLoop = index => {
 			const guessLc = guess.toLowerCase();
 
 			const wordArr = word.split('');
+			const lettersRemaining = word.split('');
 			const guessArr = guessLc.split('');
 
 			for (let i = 0; i < 5; i++) {
 				if (wordArr[i] === guessArr[i]) {
 					guesses[index][i] = chalk.green(guessArr[i].toUpperCase());
-				} else if (wordArr.includes(guessArr[i])) {
+				} else if (lettersRemaining.includes(guessArr[i])) {
 					guesses[index][i] = chalk.yellow(guessArr[i].toUpperCase());
 				} else {
 					guesses[index][i] = chalk.blackBright(guessArr[i].toUpperCase());
+				}
+
+				const removeIndex = lettersRemaining.findIndex(
+					item => item === guessArr[i],
+				);
+
+				if (removeIndex >= 0) {
+					lettersRemaining.splice(removeIndex, 1);
 				}
 			}
 
