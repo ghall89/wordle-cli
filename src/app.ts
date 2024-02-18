@@ -5,8 +5,8 @@
 // ##  ## #    # #   #  #    # #      #            #    # #      #
 // #    #  ####  #    # #####  ###### ######        ####  ###### #
 
-import gameLoop from './gameLoop.js';
+import initGame from "./gameLoop";
 
 console.clear();
 
-gameLoop(0);
+initGame();

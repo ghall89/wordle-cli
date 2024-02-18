@@ -2,7 +2,7 @@
 
 ## About
 
-A clone of [Wordle](https://www.nytimes.com/games/wordle/index.html) for command line, written in JavaScript.
+A clone of [Wordle](https://www.nytimes.com/games/wordle/index.html) for command line, written in TypeScript.
 
 ![](./screenshot.png)
 
