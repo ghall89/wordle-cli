@@ -8,11 +8,12 @@ A clone of [Wordle](https://www.nytimes.com/games/wordle/index.html) for command
 
 ## Installation & Usage
 
-Run `npm i -g https://github.com/ghall89/wordle-cli` to install.
+Prerequisites: Requires [Bun](https://bun.sh)
 
-Run `npm uninstall -g @ghalldev/wordle-cli` to remove.
+- From the project directory, run `bun install`
+- Then, run `bun run start`
 
-To play, run `wordle-cli`.
+You can also build an executable with `bun run build`
 
 ## Acknowledgements
 

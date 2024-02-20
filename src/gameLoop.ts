@@ -1,16 +1,16 @@
-import chalk from "chalk";
-import inquirer from "inquirer";
+import chalk from 'chalk';
+import inquirer from 'inquirer';
 
 // import stuff
-import drawGrid from "./drawGrid";
+import drawGrid from './drawGrid';
 
 let words: Array<String>;
 
 const getWords = async () => {
-  const wordsTxt = Bun.file("./src/dictionary.txt");
+  const wordsTxt = Bun.file('./src/dictionary');
   const contents = await wordsTxt.text();
 
-  words = contents.split(",");
+  words = contents.split(',');
 };
 
 // set word from game dictionary
@@ -18,12 +18,12 @@ let word: String;
 
 // this defines the game grid
 const guesses = [
-  [" ", " ", " ", " ", " "],
-  [" ", " ", " ", " ", " "],
-  [" ", " ", " ", " ", " "],
-  [" ", " ", " ", " ", " "],
-  [" ", " ", " ", " ", " "],
-  [" ", " ", " ", " ", " "],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
+  [' ', ' ', ' ', ' ', ' '],
 ];
 
 // flag for win state
@@ -34,7 +34,7 @@ const initGame = () => {
   Promise.all([getWords()]).then(() => {
     // get random word
     if (words.length === 0) {
-      throw new Error("Dictionary is empty!");
+      throw new Error('Dictionary is empty!');
     }
 
     word = words[Math.floor(Math.random() * words.length)];
@@ -57,22 +57,22 @@ const gameLoop = (index: number) => {
   inquirer
     .prompt([
       {
-        type: "input",
-        name: "guess",
-        validate: (input) => {
+        type: 'input',
+        name: 'guess',
+        validate: input => {
           // ensure user input is 5 characters
           // and is a valid word in game dictionary
           const inputLc = input.toLowerCase();
 
           if (input.length !== 5) {
-            console.log(chalk.red("\nGuess must be 5 letters!"));
+            console.log(chalk.red('\nGuess must be 5 letters!'));
             return false;
           }
 
           const isValid = words.includes(inputLc);
 
           if (!isValid) {
-            console.log(chalk.red("\nNot a valid word!"));
+            console.log(chalk.red('\nNot a valid word!'));
             return false;
           }
 
@@ -85,9 +85,9 @@ const gameLoop = (index: number) => {
       const guessLc = guess.toLowerCase();
 
       // create arrays to check user input against answer
-      const wordArr = word.split("");
-      const lettersRemaining = word.split("");
-      const guessArr = guessLc.split("");
+      const wordArr = word.split('');
+      const lettersRemaining = word.split('');
+      const guessArr = guessLc.split('');
 
       // determine user feedback
       for (let i = 0; i < 5; i++) {
@@ -104,7 +104,7 @@ const gameLoop = (index: number) => {
 
         // remove guessed character from lettersRemaining
         const removeIndex = lettersRemaining.findIndex(
-          (item) => item === guessArr[i]
+          item => item === guessArr[i],
         );
 
         if (removeIndex >= 0) {
@@ -117,7 +117,7 @@ const gameLoop = (index: number) => {
         console.clear();
         drawGrid(guesses);
         if (index === 0) {
-          console.log("Wow! You won on the first guess!");
+          console.log('Wow! You won on the first guess!');
         } else {
           console.log(`You won in ${index + 1} guesses!`);
         }

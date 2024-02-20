@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "bun .",
-    "build": "pkg ./"
+    "build": "bun build ./src/app.ts --compile --outfile build/wordle-cli"
   },
   "keywords": [],
   "author": "",
@@ -22,5 +22,9 @@
     "esm": "^3.2.25",
     "inquirer": "^8.2.5",
     "pkg": "^5.8.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.5"
   }
 }
